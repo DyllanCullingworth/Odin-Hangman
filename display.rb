@@ -1,3 +1,5 @@
+require 'colorize'
+
 module Display
 
   def display_banner
@@ -9,11 +11,13 @@ module Display
 
   def display_available_letters
     alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-    
-    @secret_word
 
     alphabet.each do |letter|
-      print letter
+      if @guesses.include? letter
+        print letter.colorize(color: :red)
+      else
+        print letter
+      end
       print ' '
     end
     puts "\n\n"

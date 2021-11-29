@@ -18,6 +18,8 @@ class Hangman
     @secret_letters = letters_hash(@secret_word)
   end
 
+  private
+
   def letters_hash(word)
     hash = Hash.new 0
 
@@ -27,8 +29,6 @@ class Hangman
 
     hash
   end
-
-  private
 
   def random_word
     file = File.open('dictionary.txt', 'r')

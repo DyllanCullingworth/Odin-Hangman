@@ -18,15 +18,15 @@ module GameLogic
     end
   end
 
-def game_over?
-  unless @secret_letters.values.include? false
-    game_over!('Winner')
-  end
+  def game_over?
+    unless @secret_letters.values.include? false
+      game_over!('Winner')
+    end
 
-  if @guesses_remaining == 0
-    game_over!('Out of moves')
-  end  
-end
+    if @guesses_remaining == 0
+      game_over!('Out of moves')
+    end  
+  end
 
   def game_over!(text)
     @game_over = true
@@ -42,29 +42,31 @@ end
     puts text 
     guess = gets.chomp.downcase
 
-    valid_guess? guess
-
-    if @secret_letters.has_key? guess
-      puts "Brilliant guess"
-      @secret_letters[guess] = true
+    if valid_guess? guess
       @guesses << guess
-    else
-      puts "Incorrect guess"
-    end
+
+      if @secret_letters.has_key? guess
+        puts "Brilliant guess"
+        @secret_letters[guess] = true
+      else
+        puts "Incorrect guess"
+      end
+    end 
   end
 
   def valid_guess?(guess)
     if guess.match /^[a-z]$/
-      return
+      if @guesses.include? guess
+        puts 
+        make_a_guess("You have already chosen that letter\n Try again")
+      else 
+       return true
+      end
     else
       puts 
       make_a_guess("Invalid guess\n Try again")
     end
-
-    if @guesses.include? guess
-      puts 
-      make_a_guess("You have already chosen that letter\n Try again")
-    end
+    
+    false
   end 
-
 end
