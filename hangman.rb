@@ -1,6 +1,6 @@
 require "./display"
 require "./game_logic"
-require './serialize'
+require './basic_serializable'
 
 
 class Hangman
@@ -8,7 +8,7 @@ class Hangman
 
   include Display
   include GameLogic
-  include Serialize
+  include BasicSerializable
   
   def initialize()
     @guesses_remaining = 6
