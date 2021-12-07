@@ -1,5 +1,4 @@
 module GameLogic
-
   def play
     @game_over = false
 
@@ -9,11 +8,11 @@ module GameLogic
       clear
       display_banner
       display_available_letters
+      p @secret_word
       display_letters
       display_info
 
       make_a_guess("Make a guess")
-      @guesses_remaining -= 1
 
       game_over?
       sleep(1)
@@ -25,7 +24,7 @@ module GameLogic
       return
     end
 
-    unless @secret_letters.values.include? false
+    if @secret_letters == @secret_word
       game_over!('Winner')
     end
 
@@ -70,6 +69,7 @@ module GameLogic
         @secret_letters[guess] = true
       else
         puts "Incorrect guess"
+        @guesses_remaining -= 1
       end
     end 
   end

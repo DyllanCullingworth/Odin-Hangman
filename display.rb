@@ -40,7 +40,7 @@ module Display
     if @guesses_remaining == 1
       puts "Last chance!"
     else
-      puts "#{@guesses_remaining} Guesses remaining"
+      puts "#{@guesses_remaining} chances remaining"
     end
   end
 
